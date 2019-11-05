@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <style>
+            body {
+                background: lightblue;
+                text-align: center;
+            }
+
+            input {
+
+
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Welcome to Caesar Cipher!
+        </h1>
+        <pre>
+            Input your phrase on the left and a number to shift by on the right.
+            If you've recieved an encoded message, input the message on the left and then input the negative shift used by the encoder.
+        </pre>
+        <p>
+            Code: <%= cipher%>
+        </p>
+       <form>
+        <input type="text" value="Phrase" name="phrase" style = 'width: 600px;'>
+        <input type="number" value="Shift" step = '1' name="shift" style = 'width: 50px;'>
+        <input type="submit" value="Encode">
+       </form>
+    </body>
+</html>

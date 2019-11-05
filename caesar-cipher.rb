@@ -1,0 +1,35 @@
+require 'sinatra'
+require 'sinatra/reloader' if development?
+
+
+def caesar_cipher(string,n)
+    return false unless string.instance_of? String
+    alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    letters = string.downcase.split("")
+    places = letters.map {|letter| 
+        index = alphabet.index(letter)
+        if index.nil?
+            letter
+        else
+            (index+n)%26
+        end
+    }
+    letters = places.map.with_index{ |place, index| 
+        if place.instance_of?(String)
+            place
+        else
+            string[index] =~ /[A-Z]/ ? alphabet[place].upcase : alphabet[place]
+        end
+    }
+    
+    letters.join
+    
+end
+
+get '/' do
+    phrase = params["phrase"]
+    shift = params["shift"].to_i
+    cipher = caesar_cipher(phrase, shift)
+    erb :index, :locals => {:cipher => cipher}
+end
+   
